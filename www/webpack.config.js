@@ -14,4 +14,8 @@ module.exports = {
   devServer: {
     host: '0.0.0.0',
   },
+  experiments: {
+    asyncWebAssembly: true,
+    syncWebAssembly: true
+  },
 };
