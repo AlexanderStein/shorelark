@@ -1,4 +1,4 @@
-pub use self::{animal::*, brain::*, config::*, eye::*, food::*, statistics::*, world::*};
+pub use self::{animal::*, brain::*, config::*, eye::*, food::*, statistics::*};
 
 mod animal;
 mod animal_individual;
@@ -7,7 +7,7 @@ mod config;
 mod eye;
 mod food;
 mod statistics;
-mod world;
+pub mod world;
 
 use self::animal_individual::*;
 use lib_genetic_algorithm as ga;
@@ -28,14 +28,14 @@ pub struct SimulationStats {
 
 pub struct Simulation {
     config: Config,
-    world: World,
+    world: world::World,
     age: usize,
     generation: usize,
 }
 
 impl Simulation {
     pub fn random(config: Config, rng: &mut dyn RngCore) -> Self {
-        let world = World::random(&config, rng);
+        let world = world::World::random(&config, rng);
 
         Self {
             config,
@@ -49,7 +49,7 @@ impl Simulation {
         &self.config
     }
 
-    pub fn world(&self) -> &World {
+    pub fn world(&self) -> &world::World {
         &self.world
     }
 
