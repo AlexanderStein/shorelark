@@ -6,8 +6,8 @@ pub struct Food {
     pub y: f32,
 }
 
-impl From<&sim::Food> for Food {
-    fn from(food: &sim::Food) -> Self {
+impl From<&sim::legacy::Food> for Food {
+    fn from(food: &sim::legacy::Food) -> Self {
         Self {
             x: food.position().x,
             y: food.position().y,

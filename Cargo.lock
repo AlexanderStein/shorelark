@@ -83,6 +83,20 @@ dependencies = [
  "approx",
  "lib-genetic-algorithm",
  "lib-neural-network",
+ "lib-simulation-legacy",
+ "nalgebra",
+ "rand",
+ "rand_chacha",
+ "test-case",
+]
+
+[[package]]
+name = "lib-simulation-legacy"
+version = "0.1.0"
+dependencies = [
+ "approx",
+ "lib-genetic-algorithm",
+ "lib-neural-network",
  "nalgebra",
  "rand",
  "rand_chacha",

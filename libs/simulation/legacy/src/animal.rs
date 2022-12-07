@@ -2,13 +2,13 @@ use crate::*;
 
 #[derive(Debug)]
 pub struct Animal {
-    pub(crate) position: na::Point2<f32>,
-    pub(crate) rotation: na::Rotation2<f32>,
-    pub(crate) vision: Vec<f32>,
-    pub(crate) speed: f32,
-    pub(crate) eye: Eye,
-    pub(crate) brain: Brain,
-    pub(crate) satiation: usize,
+    pub position: na::Point2<f32>,
+    pub rotation: na::Rotation2<f32>,
+    pub vision: Vec<f32>,
+    pub speed: f32,
+    pub eye: Eye,
+    pub brain: Brain,
+    pub satiation: usize,
 }
 
 impl Animal {
@@ -26,13 +26,13 @@ impl Animal {
 }
 
 impl Animal {
-    pub(crate) fn random(config: &Config, rng: &mut dyn RngCore) -> Self {
+    pub fn random(config: &Config, rng: &mut dyn RngCore) -> Self {
         let brain = Brain::random(config, rng);
 
         Self::new(config, rng, brain)
     }
 
-    pub(crate) fn from_chromosome(
+    pub fn from_chromosome(
         config: &Config,
         rng: &mut dyn RngCore,
         chromosome: ga::Chromosome,
@@ -42,11 +42,11 @@ impl Animal {
         Self::new(config, rng, brain)
     }
 
-    pub(crate) fn as_chromosome(&self) -> ga::Chromosome {
+    pub fn as_chromosome(&self) -> ga::Chromosome {
         self.brain.as_chromosome()
     }
 
-    pub(crate) fn process_brain(&mut self, config: &Config, foods: &[Food]) {
+    pub fn process_brain(&mut self, config: &Config, foods: &[Food]) {
         self.vision = self.eye.process_vision(self.position, self.rotation, foods);
 
         let (speed, rotation) = self.brain.propagate(self.vision.clone());
@@ -55,7 +55,7 @@ impl Animal {
         self.rotation = na::Rotation2::new(self.rotation.angle() + rotation);
     }
 
-    pub(crate) fn process_movement(&mut self) {
+    pub fn process_movement(&mut self) {
         self.position += self.rotation * na::Vector2::new(self.speed, 0.0);
         self.position.x = na::wrap(self.position.x, 0.0, 1.0);
         self.position.y = na::wrap(self.position.y, 0.0, 1.0);

@@ -8,8 +8,8 @@ pub struct Animal {
     pub vision: Vec<f32>,
 }
 
-impl From<&sim::Animal> for Animal {
-    fn from(animal: &sim::Animal) -> Self {
+impl From<&sim::legacy::Animal> for Animal {
+    fn from(animal: &sim::legacy::Animal) -> Self {
         Self {
             x: animal.position().x,
             y: animal.position().y,

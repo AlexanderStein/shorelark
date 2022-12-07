@@ -1,21 +1,12 @@
-pub use self::{animal::*, brain::*, config::*, eye::*, food::*, statistics::*};
+pub use self::{statistics::*};
 
-mod animal;
-mod animal_individual;
-mod brain;
-mod config;
-mod eye;
-mod food;
 mod statistics;
 pub mod world;
 
-use self::animal_individual::*;
+pub use lib_simulation_legacy as legacy;
 use lib_genetic_algorithm as ga;
-use lib_neural_network as nn;
 use nalgebra as na;
 use rand::{Rng, RngCore};
-use serde::{Deserialize, Serialize};
-use std::f32::consts::*;
 
 pub struct SimulationStats {
     pub age: usize,
@@ -27,14 +18,14 @@ pub struct SimulationStats {
 }
 
 pub struct Simulation {
-    config: Config,
+    config: legacy::Config,
     world: world::World,
     age: usize,
     generation: usize,
 }
 
 impl Simulation {
-    pub fn random(config: Config, rng: &mut dyn RngCore) -> Self {
+    pub fn random(config: legacy::Config, rng: &mut dyn RngCore) -> Self {
         let world = world::World::random(&config, rng);
 
         Self {
@@ -45,7 +36,7 @@ impl Simulation {
         }
     }
 
-    pub fn config(&self) -> &Config {
+    pub fn config(&self) -> &legacy::Config {
         &self.config
     }
 
@@ -115,7 +106,7 @@ impl Simulation {
             .world
             .animals
             .iter()
-            .map(AnimalIndividual::from_animal)
+            .map(legacy::AnimalIndividual::from_animal)
             .collect();
 
         if self.config.ga_reverse == 1 {

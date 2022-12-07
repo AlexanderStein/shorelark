@@ -2,7 +2,7 @@ use crate::*;
 
 #[derive(Debug)]
 pub struct Food {
-    pub(crate) position: na::Point2<f32>,
+    pub position: na::Point2<f32>,
 }
 
 impl Food {
@@ -12,7 +12,7 @@ impl Food {
 }
 
 impl Food {
-    pub(crate) fn random(rng: &mut dyn RngCore) -> Self {
+    pub fn random(rng: &mut dyn RngCore) -> Self {
         Self {
             position: rng.gen(),
         }
